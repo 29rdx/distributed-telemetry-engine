@@ -1,0 +1,9 @@
+# Binaries
+telemetry-agent
+*.exe
+*.test
+
+# OS & IDE
+.DS_Store
+.idea/
+.vscode/

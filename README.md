@@ -7,3 +7,4 @@ Powered by [Odeus](https://github.com/vatsalkoriya/odeus) and autonomous GitHub 
 - **Developer**: Rupraj Datta
 - **Engine**: Odeus Git Commit Backfill & GitHub Actions Cron
 - **Target Branch**: `main`
+## Architecture Guidelines

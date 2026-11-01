@@ -1,0 +1,35 @@
+name: 🚀 Daily Automated Contribution Streak
+
+on:
+  schedule:
+    # Runs twice daily at 04:00 and 16:00 UTC (9:30 AM and 9:30 PM IST)
+    - cron: '0 4,16 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  commit-streak:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Configure Git Identity
+        run: |
+          git config --global user.name "Rupraj Datta"
+          git config --global user.email "dattarupraj@gmail.com"
+
+      - name: Record Daily Developer Activity
+        run: |
+          TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+          echo "Activity Log: $TIMESTAMP [Automated by Odeus & GitHub Actions]" >> data.txt
+          git add data.txt
+          git commit -m "Auto-streak: record daily activity [$(date -u +'%Y-%m-%d')]" || exit 0
+
+      - name: Push Commits
+        run: |
+          git push origin main

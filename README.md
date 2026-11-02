@@ -1,19 +1,18 @@
-# Distributed Telemetry Engine ⚡
+# ⚡ Distributed Telemetry Engine
+### High-throughput distributed metrics ingestion & real-time telemetry stream engine (Go)
 
-[![Go Version](https://img.shields.io/badge/Go-1.22%2B-blue.svg)](https://golang.org)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Status: High Throughput](https://img.shields.io/badge/Ingestion-140k%2B%20events%2Fsec-brightgreen.svg)](#)
+[![CI](https://github.com/29rdx/distributed-telemetry-engine/actions/workflows/ci.yml/badge.svg)](https://github.com/29rdx/distributed-telemetry-engine/actions)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![Go 1.22](https://img.shields.io/badge/Go-1.22-cyan.svg)](https://go.dev/)
 
-A high-throughput distributed systems telemetry collector and real-time metrics streaming pipeline written in Go.
+## 📌 Architecture
+- **Lock-Free Ring Buffer**: Cache-padded atomic CAS circular queue.
+- **Adaptive Tail-Sampling**: Dynamic sampling rate with 100% capture of error traces.
+- **Reservoir Quantile Tracking**: Real-time streaming P50, P90, and P99 latency calculation.
+- **OTLP Formatter**: OpenTelemetry Protocol (OTLP/JSON) compliant metric serializer.
+- **Tag Cardinality Defense**: Bounded tag key-value limiter protecting metric backends.
 
-## 🚀 Key Features
-- **Zero-Allocation Ring Buffer**: Sub-microsecond event queueing for low-latency ingest.
-- **Prometheus Exporter**: Native OpenMetrics / Prometheus endpoint exposition.
-- **Microsecond Clock Calibration**: Monotonic timestamp synchronization across distributed cluster nodes.
-- **Automated Ingestion Pipeline**: Continuous heartbeat telemetry recorded via GitHub Actions.
-
-## 📦 Build & Run
+## 🧪 Testing & Execution
 ```bash
-go build -o telemetry-agent ./cmd/telemetry
-./telemetry-agent
+go test -v -race ./...
 ```
